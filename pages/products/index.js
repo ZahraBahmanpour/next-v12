@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ProductCard from "@/components/ProductCard";
 
 export default function Products({ products }) {
   console.log(products);
@@ -7,9 +7,7 @@ export default function Products({ products }) {
       <h1>Products</h1>
       <ul>
         {products.map((p) => (
-          <li>
-            <Link href={`/products/${p.id}`}>{p.name}</Link>
-          </li>
+          <ProductCard {...p} key={p.id} />
         ))}
       </ul>
     </>
