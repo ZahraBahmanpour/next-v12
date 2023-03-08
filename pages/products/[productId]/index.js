@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 export default function ProductDetail({ product }) {
   const router = useRouter();
   const productId = router.query.productId;
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <h1>Product Details</h1>
@@ -30,7 +33,7 @@ export async function getStaticPaths() {
     return { params: { productId: product.id } };
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps(context) {
