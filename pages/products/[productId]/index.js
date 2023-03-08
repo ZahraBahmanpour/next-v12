@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function ProductDetail({ product }) {
@@ -8,6 +9,9 @@ export default function ProductDetail({ product }) {
   // }
   return (
     <>
+      <Head>
+        <title>{product.name}</title>
+      </Head>
       <h1>Product Details</h1>
       {productId}
       <h2>{product.name}</h2>
