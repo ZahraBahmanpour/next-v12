@@ -15,6 +15,23 @@ export default function Products({ products }) {
     };
     getFilteredProducts();
   }, [filterText]);
+
+  const handleCreateNew = async () => {
+    const res = await fetch("http://localhost:3000/api/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        product: {
+          name: "Shampoo",
+          price: "12.00",
+          count: 3,
+          description: "Tesssssst",
+        },
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   return (
     <>
       <h1>Products</h1>
@@ -29,6 +46,7 @@ export default function Products({ products }) {
           <ProductCard {...p} key={p.id} />
         ))}
       </ul>
+      <button onClick={handleCreateNew}>Create New</button>
     </>
   );
 }
