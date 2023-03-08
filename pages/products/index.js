@@ -14,7 +14,15 @@ export default function Products({ products }) {
   );
 }
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     "https://6300a18859a8760a757d441c.mockapi.io/products"
+//   );
+//   const data = await res.json();
+//   return { props: { products: data.products } };
+// }
+
+export async function getServerSideProps() {
   const res = await fetch(
     "https://6300a18859a8760a757d441c.mockapi.io/products"
   );

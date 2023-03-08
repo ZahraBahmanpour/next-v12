@@ -23,20 +23,30 @@ export default function ProductDetail({ product }) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    "https://6300a18859a8760a757d441c.mockapi.io/products"
-  );
-  const data = await res.json();
+// export async function getStaticPaths() {
+//   const res = await fetch(
+//     "https://6300a18859a8760a757d441c.mockapi.io/products"
+//   );
+//   const data = await res.json();
 
-  const paths = data.products.map((product) => {
-    return { params: { productId: product.id } };
-  });
+//   const paths = data.products.map((product) => {
+//     return { params: { productId: product.id } };
+//   });
 
-  return { paths, fallback: true };
-}
+//   return { paths, fallback: true };
+// }
 
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   const { params } = context;
+//   console.log(context);
+//   const res = await fetch(
+//     "https://6300a18859a8760a757d441c.mockapi.io/products/" + params.productId
+//   );
+//   const data = await res.json();
+//   return { props: { product: data } };
+// }
+
+export async function getServerSideProps(context) {
   const { params } = context;
   console.log(context);
   const res = await fetch(
