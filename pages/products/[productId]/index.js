@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 export default function ProductDetail({ product }) {
   const router = useRouter();
   const productId = router.query.productId;
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  // if (router.isFallback) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <>
       <h1>Product Details</h1>
@@ -47,11 +47,12 @@ export default function ProductDetail({ product }) {
 // }
 
 export async function getServerSideProps(context) {
-  const { params } = context;
-  console.log(context);
-  const res = await fetch(
+  const { params, req, res } = context;
+  console.log(req.headers);
+  res.setHeader("Set-Cookie", ["name=Sahra"]);
+  const response = await fetch(
     "https://6300a18859a8760a757d441c.mockapi.io/products/" + params.productId
   );
-  const data = await res.json();
+  const data = await response.json();
   return { props: { product: data } };
 }
